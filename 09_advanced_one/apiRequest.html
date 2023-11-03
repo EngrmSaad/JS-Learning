@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .divTable{
+            display: table;
+            width: 100%;
+        }
+        .divTableRow {
+            display: table-row;
+        }
+        .DataRow {
+            display: table-row;
+        }
+        .divTableHeading {
+            background-color: #EEE;
+            display: table-header-group;
+        }
+        .picCell, .divTableHead {
+            border: 1px solid #999999;
+            display: table-cell;
+            padding: 3px 10px;
+        }
+        .divTableCell, .divTableHead {
+            border: 1px solid #999999;
+            display: table-cell;
+            padding: 3px 10px;
+            vertical-align: top;
+        }
+        .DataCell, .divTableHead {
+            border: 1px solid #999999;
+            display: table-cell;
+            padding: 3px 10px;
+            vertical-align: top;
+            color: white;
+        }
+        .divTableHeading {
+            background-color: #EEE;
+            display: table-header-group;
+            font-weight: bold;
+        }
+        .divTableFoot {
+            background-color: #EEE;
+            display: table-footer-group;
+            font-weight: bold;
+        }
+        .divTableBody {
+            display: table-row-group;
+        }
+    </style>
+    <title>apiRequest</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <div class="divTable">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="picCell">asasas</div>
+                <div class="DataCell">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div>
+        <ul id="details">
+            
+        </ul>
+    </div> -->
+</body>
+<script>
+    let requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4){
+            const data = JSON.parse(this.responseText)
+            const DataCell = document.querySelector('.DataCell')
+            
+            document.querySelector('.picCell').innerHTML = `<img width="100px" id="japan" src="${data.avatar_url}" alt="">`
+            for(let i = 0; i < 4; i++){
+                const div = document.createElement('div')
+                div.className='DataRow'
+                if (i === 0) {
+                    div.innerHTML = `Name: ${data.name}`
+                }
+                else if (i === 1) {
+                    div.innerHTML = `Followers: ${data.followers}`
+                }
+                else if (i === 2) {
+                    div.innerHTML = `Github ID: <a href="${data.url}">Click Here</a>`
+                }
+                else if (i === 3) {
+                    div.innerHTML = `Youtube Channel: <a href="${data.blog}">Click Here</a>`
+                }
+                DataCell.appendChild(div)
+            }
+                            
+            // const ul = document.querySelector('#details')
+
+            // for(let i = 0; i < 3; i++){
+            //     const li = document.createElement('li')
+            //     if (i === 0) {
+            //         li.innerHTML = `Name: ${data.login}`
+            //     }
+            //     else if (i === 1) {
+            //         li.innerHTML = `<img width="300px" id="japan" src="${data.avatar_url}" alt="">`
+            //     }
+            //     else if (i === 2) {
+            //         li.innerHTML = `Followers: ${data.followers}`
+            //     }
+            //     ul.appendChild(li)
+            // }
+
+            // document.getElementById('name').innerHTML = `Name: ${data.login}`
+            // document.getElementById('pic').src = 
+            // document.getElementById('followers').innerHTML = `Followers: ${data.followers}`
+            console.log(data.avatar_url);
+        }
+        
+    }
+    xhr.send()
+    // console.log(xhr.readyState);
+</script>
+</html>
